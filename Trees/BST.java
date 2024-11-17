@@ -44,12 +44,12 @@ public class BST {
         Node aux = this.root;
         
         while (aux != null) {
-        	if (aux.value == element) return aux;
-        	if (element < aux.value) aux = aux.left;
-        	if (element > aux.value) aux = aux.right;
+            if (aux.value == element) return aux;
+            if (element < aux.value) aux = aux.left;
+            if (element > aux.value) aux = aux.right;
         }
-    	
-    	return null;
+        
+        return null;
     }
     
     public int height() {
@@ -61,23 +61,23 @@ public class BST {
         return 1 + Math.max(height(n.left), height(n.right));
     }
 
-    public boolean equals(BST outra) {
-        return this.preOrder().equals(outra.preOrder());	
+    public boolean equals(BST another) {
+        return this.preOrder().equals(another.preOrder());    
     }
     
     public String preOrder() {
-    	return preOrder(this.root).trim();
+        return preOrder(this.root).trim();
     }
     
     public String preOrder(Node n) {
-    	if (n == null) return "";
-    	
-    	String result = String.valueOf(n.value) + " "; 
-    	String left = preOrder(n.left);
-    	String right = preOrder(n.right);
-    	result += left + right;
-    	
-    	return result;
+        if (n == null) return "";
+        
+        String result = String.valueOf(n.value) + " "; 
+        String left = preOrder(n.left);
+        String right = preOrder(n.right);
+        result += left + right;
+        
+        return result;
     }
 
     public String inOrder() {
@@ -95,99 +95,99 @@ public class BST {
         return result;
     }
 
-    public String posOrder() {
-        return posOrder(this.root).trim();
+    public String postOrder() {
+        return postOrder(this.root).trim();
     }
 
-    public String posOrder(Node n) {
+    public String postOrder(Node n) {
         if (n == null) return "";
         
-        String left = posOrder(n.left);
-        String right = posOrder(n.right);
+        String left = postOrder(n.left);
+        String right = postOrder(n.right);
         String result = String.valueOf(n.value) + " "; 
         result = left + right + result;
         
         return result;
     }
 
-    public int contaFolhas() {
-        return contaFolhas(this.root);
+    public int countLeaves() {
+        return countLeaves(this.root);
     }
 
-    public int contaFolhas(Node n) {
+    public int countLeaves(Node n) {
         if (n == null) return 0;
         if (n.isLeaf()) return 1;
-        else return contaFolhas(n.left) + contaFolhas(n.right);
+        else return countLeaves(n.left) + countLeaves(n.right);
     }
 
-    public int contaMaiores(int v) {
-		return contaMaiores(v, this.root);
-	}
-	
-	public int contaMaiores(int v, Node n) {
-		if (n == null) return 0;
-		if (n.value > v) return 1 + contaMaiores(v, n.left) + contaMaiores(v, n.right);
-		return contaMaiores(v, n.right);	
-	}
-	
-	public int contaMenores(int v) {
-		return contaMenores(v, this.root);
-	}
-	
-	public int contaMenores(int v, Node n) {
-		if (n == null) return 0;
-		if (n.value < v) return 1 + contaMenores(v, n.left) + contaMenores(v, n.right);
-		return contaMenores(v, n.left);	
-	}
-	
-    public Node min() {
-    	return min(this.root);
+    public int countGreaterThan(int v) {
+        return countGreaterThan(v, this.root);
     }
     
-    public Node min(Node n) {    	
-    	while (n.left != null) {
-    		n = n.left;
-    	}
-    	return n;
+    public int countGreaterThan(int v, Node n) {
+        if (n == null) return 0;
+        if (n.value > v) return 1 + countGreaterThan(v, n.left) + countGreaterThan(v, n.right);
+        return countGreaterThan(v, n.right);    
+    }
+    
+    public int countLessThan(int v) {
+        return countLessThan(v, this.root);
+    }
+    
+    public int countLessThan(int v, Node n) {
+        if (n == null) return 0;
+        if (n.value < v) return 1 + countLessThan(v, n.left) + countLessThan(v, n.right);
+        return countLessThan(v, n.left);    
+    }
+    
+    public Node min() {
+        return min(this.root);
+    }
+    
+    public Node min(Node n) {        
+        while (n.left != null) {
+            n = n.left;
+        }
+        return n;
     }
     
     public Node max() {
-    	return max(this.root);
+        return max(this.root);
     }
     
     public Node max(Node n) {
-    	while (n.right != null) {
-    		n = n.right;
-    	}
-    	return n;
+        while (n.right != null) {
+            n = n.right;
+        }
+        return n;
     }
     
-    public Node sucessor(int k) {
-    	Node n = search(k);
-    	
-    	if (n == null) return null;
-    	
-    	if (n.right != null) return min(n.right);
-    	
-    	while (n.parent != null && n.parent.value > n.value) {
-    		n = n.parent;
-    	}
-    	
-    	return n;
+    public Node successor(int k) {
+        Node n = search(k);
+        
+        if (n == null) return null;
+        
+        if (n.right != null) return min(n.right);
+        
+        while (n.parent != null && n.parent.value > n.value) {
+            n = n.parent;
+        }
+        
+        return n;
     }
     
-    public Node antecessor(int k) {
-    	Node n = search(k);
-    	
-    	if (n == null) return null;
-    	
-    	if (n.left != null) return max(n.left);
-    	
-    	while (n.parent != null && n.parent.value < n.value) {
-    		n = n.parent;
-    	}
-    	
-    	return n;
+    public Node predecessor(int k) {
+        Node n = search(k);
+        
+        if (n == null) return null;
+        
+        if (n.left != null) return max(n.left);
+        
+        while (n.parent != null && n.parent.value < n.value) {
+            n = n.parent;
+        }
+        
+        return n;
     }
     
     public Node remove(int k) {
@@ -213,18 +213,18 @@ public class BST {
                 return aux.right;
             }
 
-            Node sucessor = sucessor(aux.value);
-            aux.value = sucessor.value;
-            aux.right = remove(aux.right, sucessor.value);
+            Node successor = successor(aux.value);
+            aux.value = successor.value;
+            aux.right = remove(aux.right, successor.value);
         }
         return aux;
     }
     
     public int balance(Node n) {
-		return height(n.left) - height(n.right);
-	}
-	
-	public void bfs() {
+        return height(n.left) - height(n.right);
+    }
+    
+    public void bfs() {
         if (root == null) return;
         
         Queue<Node> queue = new LinkedList<>();
@@ -244,7 +244,7 @@ public class BST {
             }
         }
     }
-	
+    
     public int size() {
         return this.size;
     }
@@ -263,19 +263,19 @@ class Node {
     }
     
     public boolean isLeaf() {
-    	return (this.left == null && this.right == null);
+        return (this.left == null && this.right == null);
     }
     
-    public boolean hasTwoBranch() {
-    	return (this.left != null && this.right != null);
+    public boolean hasTwoBranches() {
+        return (this.left != null && this.right != null);
     }
     
     public boolean hasOnlyBranch() {
-    	return (!(isLeaf() || hasTwoBranch()));
+        return (!(isLeaf() || hasTwoBranches()));
     }
     
     public boolean hasOnlyLeftChild() {
-    	return (this.left != null && this.right == null);
+        return (this.left != null && this.right == null);
     }
 
     public boolean hasOnlyRightChild() {

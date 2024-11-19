@@ -10,7 +10,7 @@ This repository includes:
 
 # Sorting
 
-CountingSort
+- CountingSort
 - RadixSort
 - MergeSort
 - QuickSort

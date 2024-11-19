@@ -1,25 +1,23 @@
 This repository includes:
 
 # Linear Structures
-LinkedList.java
-Queue.java
-Stack.java
+- LinkedList, 
+- Queue
+- Stack
 
 # Others
-BinarySearch.java
+- BinarySearch
 
 # Sorting
 
-CountingSort.java
-RadixSort.java
-
-MergeSort.java
-QuickSort.java
- 
-BubbleSort.java
-InsertionSort.java
-SelectionSort.java
+CountingSort
+- RadixSort
+- MergeSort
+- QuickSort
+- BubbleSort.java
+- InsertionSort
+- SelectionSort
 
 # Trees
-BST.java
-Heap.java
+- BST
+- Heap
